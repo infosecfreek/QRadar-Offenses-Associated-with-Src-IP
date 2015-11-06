@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>List of offense IDs (for last 30 Days) the source is part of </h2>
+
+<button type="button" onclick="loadDoc()">Get the data</button>
+
+<p id="demo"></p>
+ 
+<script>
+
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+      //document.getElementById("demo").innerHTML = token;
+	  var rishabh = JSON.parse(xhttp.responseText);
+	
+
+function if_null(x){
+	if (x==null){
+	return "--";
+	}
+	else{
+	return x;
+	}
+}	
+
+function if_date_null(x){
+	if (x==null){
+	return "--";
+	}
+	else{
+	return new Date(x);
+	}
+}
+  document.write("<p>"+"List of offense IDs (for last 30 Days) the source is part of"+"</p>");
+  document.write("<table border='1'>");
+  document.write("<tr>");
+  document.write("<th>"+"Source IP"+"</th>");
+  document.write("<th>"+"Offense IDs"+"</th>");
+  document.write("</tr>");
+  for(var i=0; i< rishabh.length; i++){
+  if (rishabh[i].offense_ids.length > 1){
+  document.write("<tr>");
+  
+  document.write("<td>"+rishabh[i].source_ip+"</td>");
+  document.write("<td>"+rishabh[i].offense_ids+"</td>");
+  
+  document.write("</tr>");
+  }
+ 
+}
+ document.write("</table>");
+
+    }
+	  
+  }
+  var token = document.cookie.split("SEC=").pop().split(";").shift();
+  //change the x.x.x.x with the IP address of QRadar console
+  var url="https://x.x.x.x/api/siem/source_addresses?filter=first_event_flow_seen"+"%3E"+( ( new Date() ).getTime() - 2592000000 )+"&fields=source_ip%2Coffense_ids%2Cfirst_event_flow_seen";
+  xhttp.open("GET", url, true);
+  xhttp.setRequestHeader("Version", "4.0");
+  xhttp.setRequestHeader("Range", "items=0-209");
+  xhttp.setRequestHeader("Accept", "application/json");
+  xhttp.setRequestHeader("Content-type", " application/json");
+  xhttp.setRequestHeader("SEC", token);
+  xhttp.send();
+  
+}
+</script>
+
+</body>
+</html>
+
