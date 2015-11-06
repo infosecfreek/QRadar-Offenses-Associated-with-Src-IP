@@ -2,7 +2,7 @@
 
 About:
 
-This script provides you detail about the offenses that are associated with source IP address. In this you will get the details (in tabular format) ,only if the source IP address is associated with more that one Offenses. This detail you canot get from the GUI easily at one place.
+This script provides you detail about the offenses that are associated with source IP address. In this you will get the details (in tabular format) ,only if the source IP address is associated with more that one Offenses. This detail you cannot get from the GUI easily at one place.
 
 How to deploy:
 
